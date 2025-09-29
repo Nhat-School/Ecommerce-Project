@@ -5,10 +5,15 @@ import "./HomePage.css";
 
 export function HomePage() {
   const [products, setProducts] = useState([]);
+  const [cart,setCart] = useState([]);
 useEffect(() => {
 axios("http://localhost:3000/api/products")
   .then((response) => {
    setProducts(response.data);
+  });
+  axios.get("http://localhost:3000/api/cart-items")
+  .then((response)=>{
+    setCart(response.data);
   });
 }, []);
   
@@ -18,7 +23,7 @@ axios("http://localhost:3000/api/products")
       <title>Ecommerce</title>
       <link rel="icon" type="image/svg+xml" href="/vite.svg" />
 
-      <Header />
+      <Header cart={cart}/>
       <div className="home-page">
         <div className="products-grid">
           {products.map((product) => {
