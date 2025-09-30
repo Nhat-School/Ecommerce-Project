@@ -19,6 +19,7 @@ export function CheckoutPage({ cart }) {
       setPaymentSummary(response.data);
     });
   }, []);
+  //test
   return (
     <>
       <title>Checkout</title>
